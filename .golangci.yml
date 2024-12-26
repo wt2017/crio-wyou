@@ -1,0 +1,217 @@
+---
+run:
+  build-tags:
+    - apparmor
+    - containers_image_ostree_stub
+    # containers/image would use mtrmac/gpgme otherwise, which requires gpgme C headers
+    - containers_image_openpgp
+    - selinux
+    - test
+    # needs btrfs headers installed
+    - exclude_graphdriver_btrfs
+    # needs devmapper headers installed
+    - exclude_graphdriver_devicemapper
+  concurrency: 6
+  timeout: 10m
+linters:
+  disable-all: true
+  enable:
+    - asasalint
+    - asciicheck
+    - bidichk
+    - bodyclose
+    - canonicalheader
+    - copyloopvar
+    - decorder
+    - dogsled
+    - dupl
+    - dupword
+    - durationcheck
+    - errcheck
+    - errchkjson
+    - errorlint
+    - fatcontext
+    - forcetypeassert
+    - gci
+    - ginkgolinter
+    - gocheckcompilerdirectives
+    - gochecknoinits
+    - gochecksumtype
+    - goconst
+    - gocritic
+    - gocyclo
+    - godot
+    - gofmt
+    - gofumpt
+    - goheader
+    - goimports
+    - gomoddirectives
+    - gomodguard
+    - goprintffuncname
+    - gosimple
+    - gosmopolitan
+    - govet
+    - grouper
+    - importas
+    - ineffassign
+    - intrange
+    - loggercheck
+    - makezero
+    - mirror
+    - misspell
+    - musttag
+    - nakedret
+    - noctx
+    - nolintlint
+    - nosprintfhostport
+    - perfsprint
+    - prealloc
+    - promlinter
+    - protogetter
+    - reassign
+    - revive
+    - rowserrcheck
+    - sloglint
+    - spancheck
+    - sqlclosecheck
+    - staticcheck
+    - stylecheck
+    - tagalign
+    - tenv
+    - testableexamples
+    - testifylint
+    - tparallel
+    - typecheck
+    - unconvert
+    - unparam
+    - unused
+    - usestdlibvars
+    - wastedassign
+    - whitespace
+    - zerologlint
+    # - containedctx
+    # - contextcheck
+    # - cyclop
+    # - depguard
+    # - err113
+    # - errname
+    # - exhaustive
+    # - exhaustruct
+    # - forbidigo
+    # - funlen
+    # - gochecknoglobals
+    # - gocognit
+    # - godox
+    # - gosec
+    # - inamedparam
+    # - interfacebloat
+    # - ireturn
+    # - lll
+    # - maintidx
+    # - mnd
+    # - nestif
+    # - nilerr
+    # - nilnil
+    # - nlreturn
+    # - nonamedreturns
+    # - paralleltest
+    # - predeclared
+    # - tagliatelle
+    # - testpackage
+    # - thelper
+    # - varnamelen
+    # - wrapcheck
+    # - wsl
+linters-settings:
+  gci:
+    sections:
+      - standard
+      - default
+      - localmodule
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+  revive:
+    rules:
+      - name: argument-limit
+        disabled: false
+        arguments: [22]
+  gocritic:
+    enabled-checks:
+      - appendCombine
+      - badLock
+      - badRegexp
+      - badSorting
+      - badSyncOnceFunc
+      - boolExprSimplify
+      - builtinShadow
+      - builtinShadowDecl
+      - commentedOutCode
+      - commentedOutImport
+      - deferInLoop
+      - deferUnlambda
+      - docStub
+      - dupImport
+      - dynamicFmtString
+      - emptyDecl
+      - emptyFallthrough
+      - emptyStringTest
+      - equalFold
+      - evalOrder
+      - exposedSyncMutex
+      - externalErrorReassign
+      - hexLiteral
+      - httpNoBody
+      - hugeParam
+      - importShadow
+      - indexAlloc
+      - initClause
+      - methodExprCall
+      - nestingReduce
+      - nilValReturn
+      - octalLiteral
+      - paramTypeCombine
+      - preferDecodeRune
+      - preferFilepathJoin
+      - preferFprint
+      - preferStringWriter
+      - preferWriteByte
+      - ptrToRefParam
+      - rangeExprCopy
+      - rangeValCopy
+      - redundantSprint
+      - regexpPattern
+      - regexpSimplify
+      - returnAfterHttpError
+      - ruleguard
+      - sliceClear
+      - sloppyReassign
+      - sortSlice
+      - sprintfQuotedString
+      - sqlQuery
+      - stringConcatSimplify
+      - stringXbytes
+      - stringsCompare
+      - syncMapLoadAndDelete
+      - timeExprSimplify
+      - todoCommentWithoutDetail
+      - tooManyResultsChecker
+      - truncateCmp
+      - typeAssertChain
+      - typeDefFirst
+      - typeUnparen
+      - uncheckedInlineErr
+      - unlabelStmt
+      - unnamedResult
+      - unnecessaryBlock
+      - unnecessaryDefer
+      - weakCond
+      - yodaStyleExpr
+      # - filepathJoin
+      # - whyNoLint
+  gocyclo:
+    min-complexity: 177
+  nakedret:
+    max-func-lines: 15
+  goconst:
+    min-occurrences: 6
